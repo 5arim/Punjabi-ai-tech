@@ -475,22 +475,6 @@
       element.classList.toggle('active');
     }
 
-    // Trigger Tidio welcome message on Courses section visit
-    document.addEventListener('DOMContentLoaded', () => {
-      const coursesSection = document.getElementById('courses');
-      const observer = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting && window.tidioChatApi) {
-          window.tidioChatApi.open();
-          window.tidioChatApi.messageFromOperator(
-            currentLang === 'en'
-              ? 'Explore our AI courses for kids and instructors!'
-              : 'بچوں اور انسٹرکٹرز کے لیے ہمارے AI کورسز دریافت کریں!'
-          );
-        }
-      });
-      observer.observe(coursesSection);
-    });
-
     // Initialize language and Tidio on page load
     document.addEventListener('tidioChat-ready', () => {
       updateLanguage();
