@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Punjabi AI Tech</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    /* Custom gradient for header, footer, and buttons */
+    .gradient-bg {
+      background: linear-gradient(135deg, #fb923c, #f97316, #d97706);
+    }
+    /* Hover animation for buttons */
+    .btn-hover {
+      transition: all 0.3s ease;
+    }
+    .btn-hover:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    /* Card hover effect */
+    .card-hover {
+      transition: all 0.3s ease;
+      border: 1px solid #e5e7eb;
+    }
+    .card-hover:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(249, 115, 22, 0.2);
+    }
+    /* Smooth scroll for anchor links */
+    html {
+      scroll-behavior: smooth;
+    }
+    /* Custom font for headings and Urdu text */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Noto+Nastaliq+Urdu&display=swap');
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+    h1, h2, h3, h4 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+    }
+    /* Apply Noto Nastaliq Urdu for Urdu text */
+    .lang-ur {
+      font-family: 'Noto Nastaliq Urdu', serif;
+      direction: rtl;
+    }
+    /* Adjust form inputs for RTL in Urdu */
+    .lang-ur-input {
+      direction: rtl;
+    }
+    /* Pulsing animation for CTA buttons */
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+    /* Resource card reveal effect */
+    .resource-content {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .card-hover.active .resource-content {
+      display: block;
+      opacity: 1;
+    }
+    /* Navigation shadow */
+    nav {
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    /* Language toggle button */
+    .lang-toggle {
+      background: linear-gradient(135deg, #f97316, #d97706);
+      color: #ffffff;
+      font-weight: 600;
+      border: 1px solid #fef08a;
+    }
+    .lang-toggle:hover {
+      background: linear-gradient(135deg, #fb923c, #f97316);
+    }
+    /* Section divider with subtle Pakistani pattern */
+    .section-divider {
+      background-image: linear-gradient(90deg, transparent, #d97706, transparent);
+      height: 2px;
+      margin: 2rem auto;
+      max-width: 50%;
+    }
+    /* Form focus states */
+    input:focus, textarea:focus {
+      border-color: #f97316;
+      box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.2);
+    }
+    /* Social media icon hover effect */
+    .social-icon {
+      transition: all 0.3s ease;
+    }
+    .social-icon:hover {
+      transform: scale(1.2);
+      filter: brightness(1.2);
+    }
+    /* Tidio Chat Widget Styling */
+    #tidio-chat iframe {
+      bottom: 20px !important;
+      right: 20px !important;
+    }
+    #tidio-chat-iframe-container {
+      background: linear-gradient(135deg, #fb923c, #f97316, #d97706) !important;
+      border-radius: 10px !important;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+    }
+    .tidio-chat-open {
+      transition: all 0.3s ease;
+    }
+    .tidio-chat-open:hover {
+      transform: scale(1.05);
+    }
+    /* Adjust for Urdu RTL */
+    .lang-ur #tidio-chat iframe {
+      right: auto !important;
+      left: 20px !important;
+    }
+    /* Mobile responsiveness */
+    @media (max-width: 640px) {
+      h1 {
+        font-size: 2rem;
+      }
+      h2 {
+        font-size: 1.8rem;
+      }
+      h3 {
+        font-size: 1.3rem;
+      }
+      p {
+        font-size: 0.95rem;
+      }
+      header a[class*="min-w-[160px]"] {
+        min-width: 120px !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+  <!-- Header -->
+  <header class="gradient-bg text-white p-8 md:p-12 text-center">
+    <div class="flex justify-end mb-6">
+      <button id="lang-toggle" class="lang-toggle px-5 py-2 rounded-lg btn-hover" aria-label="Toggle Language">اردو</button>
+    </div>
+    <h1 class="text-4xl md:text-5xl" data-en="Punjabi AI Tech" data-ur="پنجابی اے آئی ٹیک">Punjabi AI Tech</h1>
+    <p class="text-xl md:text-2xl mt-4" data-en="Discover AI Magic for Punjab’s Young Minds!" data-ur="پنجاب کے نوجوان ذہنوں کے لیے اے آئی کا جادو دریافت کریں!">Discover AI Magic for Punjab’s Young Minds!</p>
+    <div class="mt-8 space-y-4 sm:flex sm:flex-wrap justify-center gap-4">
+      <a href="#courses" class="gradient-bg text-white px-6 py-3 rounded-full font-semibold btn-hover pulse border border-yellow-200 min-w-[160px]" data-en="Join the Fun" data-ur="مزے میں شامل ہوں">Join the Fun</a>
+      <a href="#contact" class="gradient-bg text-white px-6 py-3 rounded-full font-semibold btn-hover border border-yellow-200 min-w-[160px]" data-en="Get Updates" data-ur="اپ ڈیٹس حاصل کریں">Get Updates</a>
+    </div>
+  </header>
+  <!-- Navigation -->
+  <nav class="bg-green-700 text-white p-5 sticky top-0 z-10">
+    <ul class="flex flex-wrap justify-center gap-6 md:gap-8">
+      <li><a href="#about" class="hover:text-yellow-200 transition-colors duration-300" data-en="About" data-ur="ہمارے بارے میں">About</a></li>
+      <li><a href="#courses" class="hover:text-yellow-200 transition-colors duration-300" data-en="Courses" data-ur="کورسز">Courses</a></li>
+      <li><a href="#ai-design" class="hover:text-yellow-200 transition-colors duration-300" data-en="AI & Design" data-ur="اے آئی اور ڈیزائن">AI & Design</a></li>
+      <li><a href="#blog" class="hover:text-yellow-200 transition-colors duration-300" data-en="Blog" data-ur="بلاگ">Blog</a></li>
+      <li><a href="#contact" class="hover:text-yellow-200 transition-colors duration-300" data-en="Contact" data-ur="رابطہ">Contact</a></li>
+      <li><a href="#faq" class="hover:text-yellow-200 transition-colors duration-300" data-en="FAQ" data-ur="عمومی سوالات">FAQ</a></li>
+      <li><a href="#resources" class="hover:text-yellow-200 transition-colors duration-300" data-en="Resources" data-ur="وسائل">Resources</a></li>
+      <li><a href="#socials" class="hover:text-yellow-200 transition-colors duration-300" data-en="Socials" data-ur="سوشل میڈیا">Socials</a></li>
+    </ul>
+  </nav>
+  <!-- About -->
+  <section id="about" class="py-16 px-6 md:px-12 text-center">
+    <h2 class="text-3xl md:text-4xl mb-8 text-green-800" data-en="About Us" data-ur="ہمارے بارے میں">About Us</h2>
+    <div class="section-divider"></div>
+    <img src="Punjabi-AI-logo.jpg" alt="Punjabi AI Tech Logo" class="rounded-full mx-auto mb-8 w-36 h-36 md:w-48 md:h-48 object-cover">
+    <p class="max-w-3xl mx-auto text-lg md:text-xl" 
+       data-en="We are dedicated to spreading awareness about artificial intelligence among young minds in Punjab—making it fun, meaningful, and beneficial for their future." 
+       data-ur="ہم پنجاب کے نوجوان ذہنوں میں مصنوعی ذہانت (AI) سے متعلق شعور اجاگر کرنے کے لیے پرعزم ہیں—تاکہ یہ معلوماتی، دلچسپ اور ان کے مستقبل کے لیے فائدہ مند بن سکے۔">
+       We are dedicated to spreading awareness about artificial intelligence among young minds in Punjab—making it fun, meaningful, and beneficial for their future.
+    </p>
+    <p class="mt-4 font-semibold text-yellow-600 text-lg md:text-xl" 
+       data-en="We also offer workshops that provide training and certifications to instructors, empowering them to guide the next generation in using AI effectively." 
+       data-ur="ہم ورکشاپس کے ذریعے انسٹرکٹرز کو تربیت اور سرٹیفکیٹس بھی فراہم کرتے ہیں، تاکہ وہ آنے والی نسل کو مؤثر طریقے سے AI استعمال کرنا سکھا سکیں۔">
+       We also offer workshops that provide training and certifications to instructors, empowering them to guide the next generation in using AI effectively.
+    </p>
+  </section>
+  <!-- Upcoming Courses -->
+  <section id="courses" class="bg-yellow-200 py-16 px-6 md:px-12 text-center">
+    <h2 class="text-3xl md:text-4xl mb-8 text-green-800" data-en="Upcoming Courses" data-ur="آنے والے کورسز">Upcoming Courses</h2>
+    <div class="section-divider"></div>
+    <div class="grid gap-8 sm:grid-cols-2 md:grid-cols-3 max-w-6xl mx-auto">
+      <div class="bg-white shadow-lg p-8 rounded-xl card-hover">
+        <h3 class="text-xl md:text-2xl font-bold text-green-800" data-en="AI Adventures for Kids" data-ur="بچوں کے لیے اے آئی ایڈونچرز">AI Adventures for Kids</h3>
+        <p class="mt-4 text-gray-900 text-lg" 
+           data-en="We offer online and onsite coaching and workshops for both kids and instructors, helping children explore the world of AI in a fun and practical way." 
+           data-ur="ہم بچوں اور انسٹرکٹرز دونوں کے لیے آن لائن اور آن سائٹ کوچنگ اور ورکشاپس فراہم کرتے ہیں، تاکہ بچے دلچسپ اور عملی انداز میں AI کی دنیا کو دریافت کر سکیں۔">
+           We offer online and onsite coaching and workshops for both kids and instructors, helping children explore the world of AI in a fun and practical way.
+        </p>
+      </div>
+      <div class="bg-white shadow-lg p-8 rounded-xl card-hover">
+        <h3 class="text-xl md:text-2xl font-bold text-green-800" 
+            data-en="Creating Graphic Designs with AI" 
+            data-ur="اے آئی کے ساتھ گرافک ڈیزائن بنانا">
+            Creating Graphic Designs with AI
+        </h3>
+        <p class="mt-4 text-gray-900 text-lg" 
+           data-en="Learn how to use AI tools to create different types of graphic designs—like posters, logos, and social media content—quickly and creatively." 
+           data-ur="سیکھیں کہ اے آئی ٹولز کی مدد سے مختلف قسم کے گرافک ڈیزائن جیسے پوسٹرز، لوگوز، اور سوشل میڈیا مواد کو تیزی اور تخلیقی انداز میں کیسے بنایا جا سکتا ہے۔">
+           Learn how to use AI tools to create different types of graphic designs—like posters, logos, and social media content—quickly and creatively.
+        </p>
+      </div>
+      <div class="bg-white shadow-lg p-8 rounded-xl card-hover">
+        <h3 class="text-xl md:text-2xl font-bold text-green-800" 
+            data-ur="اے آئی ٹولز کا استعمال">
+            Using AI Tools
+        </h3>
+        <p class="mt-4 text-gray-900 text-lg" 
+           data-en="Learn how to use AI tools through prompt engineering—giving clear and creative instructions to get the best results for learning and design." 
+           data-ur="پرومپٹ انجینئرنگ کے ذریعے اے آئی ٹولز استعمال کرنا سیکھیں—واضح اور تخلیقی ہدایات دے کر سیکھنے اور ڈیزائننگ کے بہترین نتائج حاصل کریں۔">
+           Learn how to use AI tools through prompt engineering—giving clear and creative instructions to get the best results for learning and design.
+        </p>
+      </div>
+    </div>
+    <form id="notify-form" class="mt-10 max-w-md mx-auto flex flex-col sm:flex-row gap-4" action="https://docs.google.com/forms/d/e/1FAIpQLSd7YxYm9CNSN6OOoWqZWZzcj70pfXCTfU-iRVj59_jR_yC0uQ/formResponse" method="POST" target="hidden_iframe">
+      <input type="email" name="entry.2510803" placeholder="Your Email" data-en="Your Email" data-ur="آپ کا ای میل" class="p-4 border border-yellow-300 rounded-lg w-full sm:w-64 focus:outline-none text-lg lang-ur-input" required />
+      <button type="submit" class="gradient-bg text-white px-6 py-4 rounded-lg btn-hover text-lg" data-en="Notify Me" data-ur="مجھے مطلع کریں">Notify Me</button>
+      <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="handleFormSubmit(this)"></iframe>
+    </form>
+  </section>
+  <!-- AI & Graphic Design -->
+  <section id="ai-design" class="py-16 px-6 md:px-12">
+    <div class="max-w-4xl mx-auto text-center">
+      <h3 class="text-3xl md:text-4xl mb-8 text-green-800" 
+          data-en="What is AI & Graphic Design?" 
+          data-ur="اے آئی اور گرافک ڈیزائن کیا ہے؟">
+          What is AI & Graphic Design?
+      </h3>
+      <div class="section-divider"></div>
+      <p class="mb-6 text-lg md:text-xl" 
+         data-en="AI means 'Artificial Intelligence' — it helps computers learn like humans!" 
+         data-ur="اے آئی کا مطلب ہے 'مصنوعی ذہانت' — یہ کمپیوٹرز کو انسانوں کی طرح سیکھنے میں مدد دیتا ہے!">
+         AI means "Artificial Intelligence" — it helps computers learn like humans!
+      </p>
+      <p class="mb-6 text-lg md:text-xl" 
+         data-en="Graphic design with AI lets you create posters, cards, and fun visuals." 
+         data-ur="اے آئی کے ساتھ گرافک ڈیزائن آپ کو پوسٹرز، کارڈز اور مزیدار بصری بنانے دیتا ہے۔">
+         Graphic design with AI lets you create posters, cards, and fun visuals.
+      </p>
+      <div class="mt-10">
+        <h4 class="text-xl md:text-2xl font-bold mb-6 text-green-800" 
+            data-en="🎨 Sample AI-Generated Design" 
+            data-ur="🎨 نمونہ اے آئی سے بنایا گیا ڈیزائن">
+            🎨 Sample AI-Generated Design
+        </h4>
+        <img src="sample ai.jpg" 
+             alt="AI-designed poster for Baisakhi festival" 
+             class="rounded-xl shadow-lg mx-auto mb-6 w-full max-w-md object-cover">
+        <p class="text-sm text-gray-700" 
+           data-en="Designed with AI tools — inspired by Punjab’s culture and colors!" 
+           data-ur="اے آئی ٹولز کے ساتھ ڈیزائن کیا گیا — پنجاب کی ثقافت اور رنگوں سے متاثر!">
+           Designed with AI tools — inspired by Punjab’s culture and colors!
+        </p>
+      </div>
+    </div>
+  </section>
+  <!-- Blog -->
+  <section id="blog" class="bg-yellow-200 py-16 px-6 md:px-12">
+    <h2 class="text-3xl md:text-4xl mb-8 text-center text-green-800" data-en="Blog" data-ur="بلاگ">Blog</h2>
+    <div class="section-divider"></div>
+    <div class="grid gap-8 sm:grid-cols-2 md:grid-cols-3 max-w-6xl mx-auto">
+      <a href="https://www.gohenry.com/uk/blog/family/what-is-ai-for-kids" target="_blank" rel="noopener noreferrer" class="bg-white p-8 rounded-xl shadow-lg card-hover block">
+        <h4 class="font-bold text-lg md:text-xl mb-4 text-green-800" data-en="What is AI for Kids?" data-ur="بچوں کے لیے اے آئی کیا ہے؟">What is AI for Kids?</h4>
+        <p class="text-gray-900 text-lg" data-en="A fun guide that explains how AI works and why it’s exciting!" data-ur="ایک مزیدار گائیڈ جو بتاتی ہے کہ اے آئی کیسے کام کرتا ہے اور یہ کیوں دلچسپ ہے!">A fun guide that explains how AI works and why it’s exciting!</p>
+      </a>
+      <a href="https://piktochart.com/ai-poster/" target="_blank" rel="noopener noreferrer" class="bg-white p-8 rounded-xl shadow-lg card-hover block">
+        <h4 class="font-bold text-lg md:text-xl mb-4 text-green-800" data-en="Design a Poster with AI" data-ur="اے آئی کے ساتھ پوسٹر ڈیزائن کریں">Design a Poster with AI</h4>
+        <p class="text-gray-900 text-lg" data-en="Step-by-step tips to create your first AI-powered school poster." data-ur="اپنا پہلا اے آئی سے چلنے والا سکول پوسٹر بنانے کے لیے مرحلہ وار تجاویز۔">Step-by-step tips to create your first AI-powered school poster.</p>
+      </a>
+      <a href="https://blog.barusahib.org/drones-robots-dreams-akal-academies-spark-ai-wave-in-punjabs-heartland/" target="_blank" rel="noopener noreferrer" class="bg-white p-8 rounded-xl shadow-lg card-hover block">
+        <h4 class="font-bold text-lg md:text-xl mb-4 text-green-800" data-en="How AI Helps Punjab’s Future" data-ur="اے آئی پنجاب کے مستقبل میں کیسے مدد کرتا ہے؟">How AI Helps Punjab’s Future</h4>
+        <p class="text-gray-900 text-lg" data-en="Discover how smart tech can help our schools and festivals!" data-ur="دریافت کریں کہ سمارٹ ٹیک ہمارے سکولوں اور تہواروں میں کیسے مدد کر سکتی ہے!">Discover how smart tech can help our schools and festivals!</p>
+      </a>
+    </div>
+  </section>
+  <!-- Contact -->
+  <section id="contact" class="py-16 px-6 md:px-12 text-center">
+    <h2 class="text-3xl md:text-4xl mb-8 text-green-800" data-en="Contact Us" data-ur="ہم سے رابطہ کریں">Contact Us</h2>
+    <div class="section-divider"></div>
+    <p class="mb-8 text-lg md:text-xl" data-en="Want to enroll or ask a question? Drop us a message!" data-ur="اندراج کرنا چاہتے ہیں یا سوال پوچھنا چاہتے ہیں؟ ہمیں پیغام بھیجیں!">Want to enroll or ask a question? Drop us a message!</p>
+    <form id="contact-form" class="max-w-md mx-auto space-y-6" action="https://docs.google.com/forms/d/e/1FAIpQLSfhVHBRl60pvF3WSsPTVjRa8LIuzGizKazhR42EmTJVkm95-w/formResponse" method="POST" target="hidden_iframe">
+      <div>
+        <label for="name" class="block text-sm font-medium text-gray-700" data-en="Your Name" data-ur="آپ کا نام">Your Name</label>
+        <input type="text" id="name" name="entry.1708658998" placeholder="Your Name" data-en="Your Name" data-ur="آپ کا نام" class="mt-2 w-full border border-yellow-300 p-4 rounded-lg focus:outline-none text-lg lang-ur-input" required />
+      </div>
+      <div>
+        <label for="email" class="block text-sm font-medium text-gray-700" data-en="Email Address" data-ur="ای میل ایڈریس">Email Address</label>
+        <input type="email" id="email" name="entry.1355985282" placeholder="Email Address" data-en="Email Address" data-ur="ای میل ایڈریس" class="mt-2 w-full border border-yellow-300 p-4 rounded-lg focus:outline-none text-lg lang-ur-input" required />
+      </div>
+      <div>
+        <label for="message" class="block text-sm font-medium text-gray-700" data-en="Your Message" data-ur="آپ کا پیغام">Your Message</label>
+        <textarea id="message" name="entry.676878407" placeholder="Your Message" data-en="Your Message" data-ur="آپ کا پیغام" class="mt-2 w-full border border-yellow-300 p-4 rounded-lg focus:outline-none text-lg lang-ur-input" rows="5" required></textarea>
+      </div>
+      <button type="submit" class="gradient-bg text-white px-6 py-4 rounded-full btn-hover text-lg" data-en="Send Message" data-ur="پیغام بھیجیں">Send Message</button>
+      <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="handleContactSubmit(this)"></iframe>
+    </form>
+  </section>
+  <!-- FAQ -->
+  <section id="faq" class="bg-yellow-200 py-16 px-6 md:px-12">
+    <h2 class="text-3xl md:text-4xl mb-8 text-center text-green-800" data-en="FAQs" data-ur="عمومی سوالات">FAQs</h2>
+    <div class="section-divider"></div>
+    <div class="max-w-4xl mx-auto space-y-6">
+      <details class="bg-white p-6 rounded-xl shadow card-hover">
+        <summary class="font-semibold cursor-pointer text-green-800 text-lg" data-en="What is AI?" data-ur="اے آئی کیا ہے؟">What is AI?</summary>
+        <p class="mt-4 text-gray-900 text-lg" data-en="AI stands for Artificial Intelligence — it’s how computers learn and solve problems!" data-ur="اے آئی کا مطلب مصنوعی ذہانت ہے — یہ وہ طریقہ ہے جس سے کمپیوٹرز سیکھتے اور مسائل حل کرتے ہیں!">AI stands for Artificial Intelligence — it’s how computers learn and solve problems!</p>
+      </details>
+      <details class="bg-white p-6 rounded-xl shadow card-hover">
+        <summary class="font-semibold cursor-pointer text-green-800 text-lg" data-en="Can I use AI for art?" data-ur="کیا میں اے آئی کو آرٹ کے لیے استعمال کر سکتا ہوں؟">Can I use AI for art?</summary>
+        <p class="mt-4 text-gray-900 text-lg" data-en="Yes! You can make cool posters and graphics using AI tools." data-ur="جی ہاں! آپ اے آئی ٹولز سے شاندار پوسٹرز اور گرافکس بنا سکتے ہیں۔">Yes! You can make cool posters and graphics using AI tools.</p>
+      </details>
+      <details class="bg-white p-6 rounded-xl shadow card-hover">
+        <summary class="font-semibold cursor-pointer text-green-800 text-lg" data-en="Do I need to know coding?" data-ur="کیا مجھے کوڈنگ آتی ہوئی چاہیے؟">Do I need to know coding?</summary>
+        <p class="mt-4 text-gray-900 text-lg" data-en="Nope! Our courses are beginner-friendly and fun for everyone." data-ur="نہیں! ہمارے کورسز نئے سیکھنے والوں کے لیے موزوں اور سب کے لیے مزیدار ہیں۔">Nope! Our courses are beginner-friendly and fun for everyone.</p>
+      </details>
+      <details class="bg-white p-6 rounded-xl shadow card-hover">
+        <summary class="font-semibold cursor-pointer text-green-800 text-lg" data-en="When do classes start?" data-ur="کلاسیں کب شروع ہوں گی؟">When do classes start?</summary>
+        <p class="mt-4 text-gray-900 text-lg" 
+           data-en="Contact us on social media or send a message through this site! We also share learning content on our socials. You can even book a session with us." 
+           data-ur="ہم سے سوشل میڈیا پر رابطہ کریں یا اسی ویب سائٹ کے ذریعے پیغام بھیجیں! ہم اپنے سوشل پلیٹ فارمز پر سیکھنے کا مواد بھی اپلوڈ کرتے ہیں۔ آپ ہمارے ساتھ سیشن بھی بک کر سکتے ہیں۔">
+           Contact us on social media or send a message through this site! We also share learning content on our socials. You can even book a session with us.
+        </p>
+      </details>
+    </div>
+  </section>
+  <!-- Resources -->
+  <section id="resources" class="py-16 px-6 md:px-12 text-center">
+    <h2 class="text-3xl md:text-4xl mb-8 text-center font-bold text-green-700" data-en="Resources" data-ur="وسائل">Resources</h2>
+    <div class="section-divider"></div>
+    <p class="text-lg md:text-xl mb-6" data-en="Explore these tools and tutorials tailored for young learners!" data-ur="نوجوان سیکھنے والوں کے لیے بنائے گئے ان ٹولز اور ٹیوٹوریلز کو دریافت کریں!">Explore these tools and tutorials tailored for young learners!</p>
+    <ul class="grid gap-6 sm:grid-cols-2 md:grid-cols-3 max-w-4xl mx-auto">
+      <li class="bg-white p-6 rounded-xl shadow-lg card-hover" onclick="toggleResource(this)">
+        <a href="https://community.ibm.com/community/user/blogs/thalia-barry/2025/03/21/abcs-of-ai-visual-glossary-for-entry-level-ai-educ" target="_blank" class="text-lg font-semibold text-green-800 w-full text-left block" data-en="AI Word List" data-ur="اے آئی الفاظ کی فہرست">AI Word List</a>
+        <p class="text-gray-600 text-base mt-2" data-en="Visual glossary for AI beginners" data-ur="اے آئی کے ابتدائیوں کے لیے بصری لغت">Visual glossary for AI beginners</p>
+        <div class="resource-content mt-4 text-gray-900 text-base">
+          <p data-en="Discover the ABCs of AI with IBM's visual glossary, designed to make artificial intelligence concepts accessible and engaging for learners of all ages." data-ur="IBM کی بصری لغت کے ساتھ اے آئی کے ABCs دریافت کریں، جو تمام عمر کے سیکھنے والوں کے لیے مصنوعی ذہانت کے تصورات کو قابل رسائی اور دلچسپ بنانے کے لیے تیار کی گئی ہے۔">Discover the ABCs of AI with IBM's visual glossary, designed to make artificial intelligence concepts accessible and engaging for learners of all ages.</p>
+        </div>
+      </li>
+      <li class="bg-white p-6 rounded-xl shadow-lg card-hover" onclick="toggleResource(this)">
+        <a href="https://www.canva.com/design-school/courses/ai-in-the-classroom" target="_blank" class="text-lg font-semibold text-green-800 w-full text-left block" data-en="Design with AI Guide" data-ur="اے آئی کے ساتھ ڈیزائن گائیڈ">Design with AI Guide</a>
+        <p class="text-gray-600 text-base mt-2" data-en="Step-by-step design tutorial" data-ur="مرحلہ وار ڈیزائن ٹیوٹوریل">Step-by-step design tutorial</p>
+        <div class="resource-content mt-4 text-gray-900 text-base">
+          <p data-en="Learn how to utilize Canva's AI tools to create engaging classroom materials, simplify lesson planning, and enhance student learning experiences." data-ur="کینوا کے اے آئی ٹولز کو استعمال کرنے کا طریقہ سیکھیں تاکہ دلکش کلاس روم مواد تیار کریں، سبق کی منصوبہ بندی کو آسان بنائیں، اور طلباء کے سیکھنے کے تجربات کو بہتر بنائیں۔">Learn how to utilize Canva's AI tools to create engaging classroom materials, simplify lesson planning, and enhance student learning experiences.</p>
+        </div>
+      </li>
+      <li class="bg-white p-6 rounded-xl shadow-lg card-hover" onclick="toggleResource(this)">
+        <a href="https://www.littlelit.ai/" target="_blank" class="text-lg font-semibold text-green-800 w-full text-left block" data-en="Kid-Friendly AI Tools" data-ur="بچوں کے لیے موزوں AI ٹولز">Kid-Friendly AI Tools</a>
+        <p class="text-gray-600 text-base mt-2" data-en="Safe platforms to explore" data-ur="دریافت کے لیے محفوظ پلیٹ فارمز">Safe platforms to explore</p>
+        <div class="resource-content mt-4 text-gray-900 text-base">
+          <p data-en="Explore LittleLit.ai, an all-in-one AI platform designed for kids aged 6–14, offering personalized AI tutors, interactive lessons, and creative projects to foster AI literacy in a safe environment." data-ur="LittleLit.ai کو دریافت کریں، جو 6–14 سال کے بچوں کے لیے تیار کردہ ایک مکمل AI پلیٹ فارم ہے، جو ذاتی نوعیت کے AI ٹیوٹرز، انٹرایکٹو اسباق، اور تخلیقی منصوبے فراہم کرتا ہے تاکہ ایک محفوظ ماحول میں AI خواندگی کو فروغ دیا جا سکے۔">Explore LittleLit.ai, an all-in-one AI platform designed for kids aged 6–14, offering personalized AI tutors, interactive lessons, and creative projects to foster AI literacy in a safe environment.</p>
+        </div>
+      </li>
+    </ul>
+  </section>
+  <!-- Footer -->
+  <footer id="socials" class="gradient-bg text-white py-8">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <div class="mb-6">
+        <ul class="flex justify-center gap-4">
+          <li>
+            <a href="https://www.youtube.com/channel/UCPNlmDFeMZqTCMAYWKGgavw" target="_blank" aria-label="Visit our YouTube channel">
+              <img width="48" height="48" src="https://img.icons8.com/doodle/48/youtube-play--v1.png" alt="youtube-play--v1"/>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.facebook.com/profile.php?id=61576540019175" target="_blank" aria-label="Visit our Facebook page">
+              <img width="48" height="48" src="https://img.icons8.com/doodle/48/facebook-new.png" alt="facebook-new"/>
+            </a>
+          </li>
+          <li>
+            <a href="https://wa.me/923012345678?text=Hello%20I%E2%80%99m%20interested%20in%20Punjabi%20AI%20Tech%20courses" target="_blank" aria-label="Message us on WhatsApp">
+              <img width="48" height="48" src="https://img.icons8.com/doodle/48/whatsapp.png" alt="whatsapp"/>
+            </a>
+          </li>
+          <li>
+            <a href="https://wa.me/923360063991?text=Hello%20I%E2%80%99m%20interested%20in%20Punjabi%20AI%20Tech%20courses" target="_blank" aria-label="Message us on WhatsApp">
+              <img width="48" height="48" src="https://img.icons8.com/doodle/48/whatsapp.png" alt="whatsapp"/>
+            </a>
+          </li>
+        </ul>
+        <div class="mb-6">
+          <p class="text-lg md:text-xl" data-en="Punjabi AI Tech Contact: <a href='tel:+923012345678' class='underline hover:text-yellow-100'>+923012345678</a>" 
+             data-ur="پنجابی AI ٹیک رابطہ: <a href='tel:+923012345678' class='underline hover:text-white'>+923012345678</a>">
+            Punjabi AI Tech Contact: <a href="tel:+923012345678" class="underline hover:text-yellow-100">+923012345678</a> 
+          </p>
+          <p class="text-lg md:text-xl mt-2" data-en="Developed by <span class='font-medium'>Optimal Soft Sol</span>, Contact: <a href='tel:+923040809061' class='underline hover:text-yellow-100'>+923040809061</a>" 
+             data-ur="تیار کردہ: <span class='font-semibold'>آپٹممل سافٹ سول</span>، رابطہ: <a href='tel:+923040809061' class='underline hover:text-yellow-100'>+923040809061</a>">
+            Developed by <span class="font-medium">Optimal Soft Sol</span>, Contact: <a href="tel:+923040809061" class="underline hover:text-yellow-100">+923040809061</a>
+          </p>
+        </div>
+      </div>
+      <p class="text-base md:text-lg" data-en="© 2025 Punjabi AI Tech. All rights reserved." data-ur="© 2025 پنجابی AI ٹیک۔ جمہ حقوق محفوظ ہیں۔">© 2025 Punjabi AI Tech. All rights reserved.</p>
+    </div>
+  </footer>
+  <!-- Tidio Chat Script -->
+  <script src="//code.tidio.co/wcxtkszlh5zh5bq9ht196wfl2jmqpfy7.js" async></script>
+  <script>
+    // Language toggle functionality
+    const langToggle = document.getElementById('lang-toggle');
+    let currentLang = 'en'; // Default language is English
+
+    function updateLanguage() {
+      langToggle.textContent = currentLang === 'en' ? 'اردو' : 'English';
+      document.documentElement.lang = currentLang;
+      // Update elements with data-en and data-ur
+      document.querySelectorAll('[data-en][data-ur]').forEach(el => {
+        el.innerHTML = el.getAttribute(`data-${currentLang}`);
+        el.classList.toggle('lang-ur', currentLang === 'ur');
+      });
+      // Update form placeholders
+      document.querySelectorAll('input[data-en][data-ur], textarea[data-en][data-ur]').forEach(input => {
+        const placeholder = input.getAttribute(`data-${currentLang}`);
+        input.setAttribute('placeholder', placeholder);
+        input.classList.toggle('lang-ur', currentLang === 'ur');
+        input.classList.toggle('lang-ur-input', currentLang === 'ur');
+      });
+      // Update form labels
+      document.querySelectorAll('label[data-en][data-ur]').forEach(label => {
+        label.textContent = label.getAttribute(`data-${currentLang}`);
+        label.classList.toggle('lang-ur', currentLang === 'ur');
+      });
+      // Adjust section text alignment
+      document.querySelectorAll('section, header, footer').forEach(section => {
+        section.classList.toggle('lang-ur', currentLang === 'ur');
+      });
+      // Update Tidio chatbot language
+      if (window.tidioChatApi) {
+        window.tidioChatApi.setLanguage(currentLang === 'ur' ? 'ur' : 'en');
+        window.tidioChatApi.messageFromOperator(
+          currentLang === 'en'
+            ? 'Welcome to Punjabi AI Tech! Ask about our AI courses!'
+            : 'پنجابی AI ٹیک میں خوش آمدید! ہمارے AI کورسز کے بارے میں پوچھیں!'
+        );
+      }
+    }
+
+    langToggle.addEventListener('click', () => {
+      currentLang = currentLang === 'en' ? 'ur' : 'en';
+      updateLanguage();
+    });
+
+    // Form submission handler for Notify Me
+    function handleFormSubmit(iframe) {
+      const form = iframe.closest('form');
+      if (form && form.id === 'notify-form') {
+        alert(currentLang === 'en' ? 'Thank you for subscribing! We’ll notify you soon.' : 'سبسکرائب کرنے کا شکریہ! ہم جلد آپ کو مطلع کریں گے۔');
+        form.reset();
+      }
+    }
+
+    // Contact form submission handler
+    function handleContactSubmit(iframe) {
+      const form = iframe.closest('form');
+      if (form && form.id === 'contact-form') {
+        alert(currentLang === 'en' ? 'Message sent! We’ll get back to you soon.' : 'پیغام بھیج دیا گیا! ہم جلد آپ سے رابطہ کریں گے۔');
+        form.reset();
+      }
+    }
+
+    // Toggle resource content
+    function toggleResource(element) {
+      const isExpanded = element.getAttribute('aria-expanded') === 'true';
+      element.setAttribute('aria-expanded', !isExpanded);
+      element.classList.toggle('active');
+    }
+
+    // Trigger Tidio welcome message on Courses section visit
+    document.addEventListener('DOMContentLoaded', () => {
+      const coursesSection = document.getElementById('courses');
+      const observer = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && window.tidioChatApi) {
+          window.tidioChatApi.open();
+          window.tidioChatApi.messageFromOperator(
+            currentLang === 'en'
+              ? 'Explore our AI courses for kids and instructors!'
+              : 'بچوں اور انسٹرکٹرز کے لیے ہمارے AI کورسز دریافت کریں!'
+          );
+        }
+      });
+      observer.observe(coursesSection);
+    });
+
+    // Initialize language and Tidio on page load
+    document.addEventListener('tidioChat-ready', () => {
+      updateLanguage();
+    });
+  </script>
+</body>
+</html>
